@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DialogController : MonoBehaviour
 {
     private static DialogController instance;
 
+    public TextMeshProUGUI Name;
+    public TextMeshProUGUI Text;
 
-    public Dialog[] Dialog;
+
+
+    public Dialog Dialog;
 
     public static DialogController Instance => instance;
 
