@@ -4,5 +4,5 @@ using UnityEngine;
 public class DialogEntry : ScriptableObject
 {
     public Entity entity;
-    public string text;
+    [TextArea] public string text;
 }

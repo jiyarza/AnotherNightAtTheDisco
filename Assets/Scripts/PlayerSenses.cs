@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerSenses : MonoBehaviour
 {
-    public float rayDistance = 10f;
+    public float rayDistance = 2.5f;
     public LayerMask interactableLayer;
     private Interactable contact;
 
@@ -22,8 +22,7 @@ public class PlayerSenses : MonoBehaviour
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
             if (interactable != null)
-            {
-                
+            {                
                 if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
                 {
                     // Realizar acciones con el objeto interactable más cercano

@@ -1,36 +1,20 @@
 using UnityEngine;
 
-public class InteractableNPC : MonoBehaviour, Interactable
+public class InteractableNPC : InteractableObject
 {
-    [Tooltip("The message to display when interacting with this object")]
-    public string[] conversation = { "Interact with this object", "Second message" };
-
-    private Color color;
+    PlayerController player;
+    public Dialog dialog;
 
     private void Start()
     {
-        color = GetComponent<Renderer>().material.color;
     }
 
-
-    public void Contact()
+    public override void Interact()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        if (dialog != null)
+        {
+            DialogController.Instance.PlayDialog(dialog);
+        }
     }
-
-    public void ContactLost()
-    {
-        GetComponent<Renderer>().material.color = color;
-    }
-    public void Interact()
-    {
-        TriggerConversation();
-    }
-
-    private void TriggerConversation()
-    {
-
-    }
-
 
 }

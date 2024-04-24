@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour, Interactable
 {
+    public Entity entity;
+    public Color highlightColor = Color.yellow;
     private Color color;
+
+    public GameObject GameObject => gameObject;
+
+    Entity Interactable.entity => entity;
 
     private void Start()
     {
@@ -11,7 +17,7 @@ public class InteractableObject : MonoBehaviour, Interactable
 
     public virtual void Contact()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        GetComponent<Renderer>().material.color = highlightColor;
     }
 
     public virtual void ContactLost()
@@ -19,7 +25,7 @@ public class InteractableObject : MonoBehaviour, Interactable
         GetComponent<Renderer>().material.color = color;
     }
 
-    public void Interact()
+    public virtual void Interact()
     {
         Debug.Log($"{this.name} Interacting");
     }
