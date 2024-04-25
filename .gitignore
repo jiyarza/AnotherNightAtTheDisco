@@ -72,3 +72,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/Resources/NPC/Alien/3DModel/Alien_TPose.fbx
 Assets/Resources/NPC/Alien/3DModel/Alien_TPose.fbx.meta
+Assets/Resources/NPC/Zombie/3DModel/Zombie_TPose.fbx
+Assets/Resources/NPC/Zombie/3DModel/Zombie_TPose.fbx.meta
