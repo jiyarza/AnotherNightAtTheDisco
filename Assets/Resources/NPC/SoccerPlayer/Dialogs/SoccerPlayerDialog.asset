@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c6764f5cbf14d4c91a1887440842a7, type: 3}
+  m_Name: SoccerPlayerDialog
+  m_EditorClassIdentifier: 
+  entries:
+  - {fileID: 11400000, guid: eee0aac59d50ec04985a05ce793c9e67, type: 2}
+  - {fileID: 11400000, guid: 0c0afb4f7dcad0c4cb5572ed06fbb4e4, type: 2}
+  - {fileID: 11400000, guid: 685df10d30fdce149ada8e1cab805808, type: 2}
+  - {fileID: 11400000, guid: f1b11c0609f58c64bbc0c85aa6b91eb4, type: 2}
+  - {fileID: 11400000, guid: 0a973fa8f30abb2498c5d6ab7883cfca, type: 2}
+  - {fileID: 11400000, guid: 6304416e093ad1249aeb1b04a73aae68, type: 2}
+  - {fileID: 11400000, guid: 965458f9a5f7fd54da21a3810aacb868, type: 2}
+  - {fileID: 11400000, guid: 99dbe0e1ff185ba4fa332b2bee770361, type: 2}
+  - {fileID: 11400000, guid: 135b080856ef0d04c94f1c2ba545a095, type: 2}
