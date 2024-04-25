@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: JoeScapade
   m_EditorClassIdentifier: 
   displayName: Joe Scapade
-  icon: {fileID: 21300000, guid: f4a14239a73737c48a09755353c3a811, type: 3}
+  icon: {fileID: 21300000, guid: 0c4c53330c196ba4db90457278b35079, type: 3}
   sfx: {fileID: 0}
