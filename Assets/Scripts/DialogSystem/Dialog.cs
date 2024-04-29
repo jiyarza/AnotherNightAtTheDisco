@@ -1,10 +1,11 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-
 
 [CreateAssetMenu(fileName = "NewDialog", menuName = "AnotherNightAtTheDisco/Dialog")]
 public class Dialog : ScriptableObject
 {
-    public DialogEntry[] entries;
-    
+    [SerializeField] DialogEntry[] entries;
+    [SerializeField] bool repeatable;
+
+    public DialogEntry[] Entries => entries;
+    public bool Repeatable => repeatable;
 }

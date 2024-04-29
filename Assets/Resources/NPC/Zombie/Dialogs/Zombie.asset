@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Zombie
   icon: {fileID: 21300000, guid: dcd326df929bc8242a2de66111a5796e, type: 3}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: a6d704f57ef6b47689e908db39daf623, type: 3}

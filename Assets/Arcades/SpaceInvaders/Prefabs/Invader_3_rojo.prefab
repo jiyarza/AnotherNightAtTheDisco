@@ -119,7 +119,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Invader_3_rojo
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9002887495059729196, guid: f3d350910c7cafb498315625cee631be, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

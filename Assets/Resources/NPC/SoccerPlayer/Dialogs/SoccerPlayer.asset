@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Jugador Lesionado
   icon: {fileID: 21300000, guid: af69a9b65b5cb024c8a01a36936a158e, type: 3}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 1e43cee836e0f4c4e82b0136cf90b634, type: 3}

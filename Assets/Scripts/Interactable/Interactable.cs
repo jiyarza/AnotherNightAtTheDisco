@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public interface Interactable
+namespace Core.Gameplay
 {
-    public enum InteractionType { HABLAR, JUGAR }
-    void Contact();
-    void ContactLost();
-    void Interact();
+    public interface Interactable
+    { 
+        void Contact();
+        void ContactLost();
+        void Interact();
 
-    InteractionType Interaction();
+        InteractionType InteractionType { get; }
 
-    GameObject GameObject { get; }
-    Entity entity { get; }
+        GameObject GameObject { get; }
+        Entity Entity { get; }
+    }
 }

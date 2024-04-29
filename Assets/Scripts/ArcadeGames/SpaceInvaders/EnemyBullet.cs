@@ -6,7 +6,10 @@ public class EnemyBullet : MonoBehaviour
 
     void Update()
     {
-        MoveBullet();
+        if (Global.IsInArcade)
+        {
+            MoveBullet();
+        }        
     }
 
     void MoveBullet()
@@ -17,10 +20,10 @@ public class EnemyBullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
+        {
             Destroy(gameObject);
+        }
     }
-
-
     void OnBecameInvisible()
     {
         Destroy(gameObject); // Destruir la bala al salir de la pantalla

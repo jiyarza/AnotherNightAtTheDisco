@@ -1,4 +1,4 @@
-using System.Collections;
+using Core.Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class DialogController : MonoBehaviour
 {
     private static DialogController instance;
-    private Dialog dialog;
-    private int index = 0;
+    private DialogPlayer dialogPlayer;    
 
     public Image Portrait;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Text;
     public CharacterController player;
     public GameObject dialogRootPanel;
+    public AudioClip showEntry;
+    private float delayTime = 0.2f;
+    private float lastDialogTime = 0f;
+
+    [SerializeField] private AudioPlayer audioPlayer;
 
     public static DialogController Instance => instance;
 
@@ -28,55 +32,59 @@ public class DialogController : MonoBehaviour
         }
     }
 
-    IEnumerator PlayDialogCoroutine()
+    private void Update()
     {
-        index = 0;
-        while (ShowEntry() >= 0)
-        {                        
-            //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-            yield return new WaitForSeconds(2.5f);
-            //yield return new WaitWhile(() => Input.GetKeyDown(KeyCode.Space));
-            //yield return new WaitWhile(() => Input.GetKey(KeyCode.Space));
-        }            
-//        }
-        yield return new WaitForSeconds(1f);
-        dialogRootPanel.SetActive(false);
-        //player.enabled = true;
+        if (Global.IsInDialog)
+        {
+            if (Input.GetKeyDown(KeyCode.Space)
+                && (Time.time - lastDialogTime > delayTime))
+            {
+                PlaySfx(showEntry);
+                ShowEntry();                
+            }
+        }
     }
 
-    private int ShowEntry()
+    private void ShowEntry()
     {
-        if (dialog != null && index < dialog.entries.Length)
+        if (dialogPlayer == null)
+            throw new MissingReferenceException(nameof(dialogPlayer));
+
+        DialogEntry entry = dialogPlayer.Next;
+        Debug.Log($"Index={dialogPlayer.Index}");
+        if (entry)
         {
-            Name.text = dialog.entries[index].entity.displayName;
-            Text.text = dialog.entries[index].text;
-            Portrait.sprite = dialog.entries[index].entity.icon;
-            index++;
-            return index;
-        } else
+            Name.text = entry.entity.displayName;
+            Text.text = entry.text;
+            Portrait.sprite = entry.entity.icon;
+            lastDialogTime = Time.time;
+        }
+        else
         {
-            ResetDialog();
-            //player.enabled = true;
-            //Global.gameState.Value = Global.GameState.DISCO;
-            return -1;
+            Name.text = "";
+            Text.text = "";
+            Portrait.sprite = null;
+            dialogRootPanel.SetActive(false);
+            Global.IsInDialog = false;
         }
     }
 
     public void PlayDialog(Dialog dialog)
     {
-        this.dialog = dialog;
-        //player.enabled = false;
-        dialogRootPanel.SetActive(true);
-        StartCoroutine(PlayDialogCoroutine());
+        if (!Global.IsInArcade)
+        {
+            Global.IsInDialog = true;
+            dialogPlayer = new(dialog);
+            dialogRootPanel.SetActive(true);
+            ShowEntry();
+        }
     }
 
-    private void ResetDialog()
+    private void PlaySfx(AudioClip clip)
     {
-        dialog = null;
-        Name.text = "";
-        Text.text = "";
-        Portrait.sprite = null;
-        index = 0;
-        dialogRootPanel.SetActive(false);
+        if (clip != null && audioPlayer != null)
+        {
+            audioPlayer.Play(clip);
+        }
     }
 }

@@ -1,6 +1,6 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using Core.Gameplay;
 
 public class InteractionClue : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class InteractionClue : MonoBehaviour
         if (contact != null)
         {
             cluePanel.SetActive(true);
-            clueText.text = $"[Pulsa espacio para {contact.Interaction().ToSafeString()}]: {contact.entity.displayName}";
+            clueText.text = $"{contact.Entity.displayName}\n[Pulsa espacio para {contact.InteractionType.displayName}]";
         } else
         {
             Hide();
@@ -42,5 +42,4 @@ public class InteractionClue : MonoBehaviour
         instance.cluePanel.SetActive(false);
         instance.clueText.text = "";
     }
-
 }

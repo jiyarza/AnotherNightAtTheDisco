@@ -1,10 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Core;
+using Core.Audio;
+using ArcadeGames.SpaceInvaders;
+using TMPro;
+using UnityEngine.Events;
 
 public class ArcadeGameController : MonoBehaviour
 {
-    public AudioSource audioSource;
-    public AudioSource discoAudioSource;
+    [SerializeField] private AudioPlayer discoAudioPlayer;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private MazingerController mazingerController;
+
     public Button startGame;
     public Button exitGame;
     [Tooltip("Panel to hide/show the arcade UI")]
@@ -16,6 +23,13 @@ public class ArcadeGameController : MonoBehaviour
     [Tooltip("Quit gameplay and return to arcade main menu")]
     public Button quitGame;
     public CharacterController player;
+    public TextMeshProUGUI gameover;
+    public static UnityEvent onVictory; 
+
+    private void Awake()
+    {
+        onVictory ??= new UnityEvent();
+    }
 
     void Start()
     {
@@ -25,27 +39,36 @@ public class ArcadeGameController : MonoBehaviour
     }
 
     private void OnDisable()
-    {
-        audioSource.Stop();
+    {        
+        onVictory.RemoveAllListeners();
+        discoAudioPlayer.Stop();
     }
 
     public void EnterArcade()
     {
-        InteractionClue.Hide();
+        Global.IsInArcade = true;
+        InteractionClue.Hide();        
         player.gameObject.SetActive(false);
         arcadeRoot.SetActive(true);
         ShowMenu();
         GameManager.StopAudioSources();
+        discoAudioPlayer.Stop();
         audioSource.Play();
+        PlayerShipController.onPlayerShipDestroyed.AddListener(Defeat);
+        Debug.Log("PlayerShipController.onPlayerShipDestroyed.AddListener(Defeat);");
+        Enemy.onAllEnemiesDestroyed.AddListener(Victory);
+        Debug.Log("Enemy.onAllEnemiesDestroyed.AddListener(Victory);");
+
     }
 
     public void ExitArcade()
     {
         new WaitForSeconds(0.25f);
-        player.gameObject.SetActive(true);
+        player.gameObject.SetActive(true);        
         audioSource.Stop();
-        discoAudioSource.Play();
+        discoAudioPlayer.Play();
         arcadeRoot.SetActive(false);
+        Global.IsInArcade = false;
     }
 
     public void ShowMenu()
@@ -65,8 +88,25 @@ public class ArcadeGameController : MonoBehaviour
         ShowGamePlay();
     }
 
+    public void Victory()
+    {
+        Debug.Log("Victory");
+        gameover.text = "Victory";
+        gameover.gameObject.SetActive(true);
+        onVictory?.Invoke();
+        Invoke("QuitGame", 5f);        
+    }
+
+    public void Defeat()
+    {
+        gameover.text = "Game Over";
+        Invoke("QuitGame", 5f);        
+    }
+
+
     public void QuitGame()
     {
+        gameover.gameObject.SetActive(false);
         ShowMenu();
     }
 }

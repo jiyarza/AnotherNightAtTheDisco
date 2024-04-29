@@ -1,11 +1,16 @@
 using UnityEngine;
-
+using Core.Gameplay;
+using System.Collections;
+using Core.Audio;
 public abstract class InteractableObject : MonoBehaviour, Interactable
 {    
     public Entity entity;
+    public InteractionType interactionType;
+    public AudioPlayer audioPlayer;
     public GameObject GameObject => gameObject;
+    public Entity Entity => entity;
 
-    Entity Interactable.entity => entity;
+    public InteractionType InteractionType => interactionType;
 
     public virtual void Contact()
     {
@@ -25,7 +30,23 @@ public abstract class InteractableObject : MonoBehaviour, Interactable
     {
         InteractionClue.Hide();
         Debug.Log($"{this.name} Interacting");
+        StartCoroutine(PlaySfx());
     }
 
-    public abstract Interactable.InteractionType Interaction();
+    private IEnumerator PlaySfx()
+    {
+        if (audioPlayer != null)
+        {
+            if (Entity.sfx != null)
+            {
+                audioPlayer.Play(Entity.sfx);
+                yield return new WaitWhile(() => audioPlayer.IsPlaying);
+            }
+            else if (InteractionType != null && InteractionType.audioClip != null)
+            {
+                audioPlayer.Play(InteractionType.audioClip);
+                yield return new WaitWhile(() => audioPlayer.IsPlaying);
+            }
+        }
+    }
 }

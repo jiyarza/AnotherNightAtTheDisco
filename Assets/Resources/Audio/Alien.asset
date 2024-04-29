@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e0c216e0765704fa3f6ff502976396, type: 3}
+  m_Name: Alien
+  m_EditorClassIdentifier: 
+  _audioClips:
+  - {fileID: 8300000, guid: 3a5c9130f2e7c4914998a9de5def5f9e, type: 3}
+  - {fileID: 8300000, guid: 2388c09981ad04561895a3cff18740cd, type: 3}
+  - {fileID: 8300000, guid: 2e416ff341dd14061942fc01ff9422d6, type: 3}
+  - {fileID: 8300000, guid: 034e51f7a8b7d424dbcb037e65b4e8bd, type: 3}
+  - {fileID: 8300000, guid: a87573b52b0e54ee28725c511e7088b4, type: 3}
+  - {fileID: 8300000, guid: 90d244e0d6d7145368574684e2d79ea2, type: 3}
+  - {fileID: 8300000, guid: 015bfcc43b2ba4664931882b30de4092, type: 3}
+  - {fileID: 8300000, guid: 460a4fa424579465d9b5116c3cf16f3b, type: 3}
+  - {fileID: 8300000, guid: a04ff879c0ded4c2e96865250a285877, type: 3}
+  - {fileID: 8300000, guid: 8c14ed36e149f4d2e8230b82a819d9b9, type: 3}
+  - {fileID: 8300000, guid: 2bf021d1255dc492ab3761c8d03136a8, type: 3}
+  - {fileID: 8300000, guid: 5ffd3d22f1999493e9aa9125a717ac89, type: 3}
+  - {fileID: 8300000, guid: 0a6fc62de89e8467c9762f73aa6a0377, type: 3}
+  - {fileID: 8300000, guid: 8f3f776217d28443595260accb5365f8, type: 3}
+  - {fileID: 8300000, guid: fd5ec2da64494431f81fd20364bd6880, type: 3}
+  - {fileID: 8300000, guid: d68efb42a0d6a4ff2bd73b3a8be19ffb, type: 3}
+  - {fileID: 8300000, guid: c9e80db27676340aaa366511b0998ddb, type: 3}
+  - {fileID: 8300000, guid: f9ea52b937a6d4f6b87bfda3fec471f0, type: 3}
+  - {fileID: 8300000, guid: 509f4756d82fb40109b5671ce1a9508c, type: 3}

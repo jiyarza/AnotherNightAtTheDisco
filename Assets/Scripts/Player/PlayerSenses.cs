@@ -1,23 +1,13 @@
 using UnityEngine;
-
+using Core.Gameplay;
 public class PlayerSenses : MonoBehaviour
 {
-    public float rayDistance = 2.5f;
-
-    // Spherecast
-    public float sphereRadius = 1f; // Radio del SphereCast
-    public float maxDistance = 2.5f; // Distancia máxima del SphereCast
+    public float rayDistance = 1.5f;
 
     void Update()
     {
-        SenseRay();
-
-        /*
-        SenseSphere();
-        if (Global.contact.Value == null)
-        {
+        if (!Global.IsInDialog && !Global.IsInArcade)
             SenseRay();
-        } */
     }        
 
     private void SenseRay()
@@ -32,22 +22,13 @@ public class PlayerSenses : MonoBehaviour
                 Global.contact.Value = interactable;
             } else
             {
-                InteractionClue.Hide();
+                Global.contact.Value = null;         
             }
         }
-    }
-
-
-    private void SenseSphere()
-    {
-        RaycastHit hit;
-        if (Physics.SphereCast(transform.position, sphereRadius, transform.forward, out hit, maxDistance))
+        else
         {
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
-            if (interactable != null)
-            {
-                Global.contact.Value = interactable;
-            }
+            Global.contact.Value = null;
+            InteractionClue.Hide();
         }
     }
 
@@ -56,8 +37,5 @@ public class PlayerSenses : MonoBehaviour
         // Dibujar el rayo en la escena
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * rayDistance);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + transform.forward * maxDistance, sphereRadius);
     }
 }

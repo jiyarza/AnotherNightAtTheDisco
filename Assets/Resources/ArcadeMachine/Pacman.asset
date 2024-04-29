@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Pacman
   m_EditorClassIdentifier: 
   displayName: Pacman
-  icon: {fileID: 0}
-  sfx: {fileID: 0}
+  icon: {fileID: 21300000, guid: 775560b924bd3f64896c64e764743412, type: 3}
+  sfx: {fileID: 8300000, guid: c3d11e6aacbd571448b134c2622a5e7e, type: 3}

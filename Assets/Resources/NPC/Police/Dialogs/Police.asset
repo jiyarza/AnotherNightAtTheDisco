@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: "Polic\xEDa Vengativo"
   icon: {fileID: 21300000, guid: 1f6b9f54ee1470f4bafcbc71c8f5f26b, type: 3}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 9fd44787827e54d6cae1c3efd5028e10, type: 3}

@@ -1,26 +1,26 @@
 using UnityEngine;
-
 public class InteractableNPC : InteractableObject
 {
     public Dialog dialog;
+    private bool dialogPlayed = false;
 
     public override void Interact()
     {
         base.Interact();
-        if (dialog != null)
+        if (dialog == null)
+        {
+            Debug.Log($"{this.entity.displayName} interaction dialog is null");
+            throw new MissingReferenceException(nameof(dialog));
+        }
+        if (!dialogPlayed)
         {
             DialogController.Instance.PlayDialog(dialog);
-        } 
-        else 
+            dialogPlayed = true;
+        }        
+        if (dialogPlayed && dialog.Repeatable)
         {
-            Debug.Log($"{this.entity.displayName} dialog is null");
+            dialogPlayed = false;
+            // should play again on the next interaction
         }
-
     }
-
-    public override Interactable.InteractionType Interaction() 
-    {
-        return Interactable.InteractionType.HABLAR;
-    }
-
 }

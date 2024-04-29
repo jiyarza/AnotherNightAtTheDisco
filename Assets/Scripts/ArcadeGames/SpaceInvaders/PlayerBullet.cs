@@ -4,33 +4,32 @@ namespace ArcadeGames.SpaceInvaders
 {
     public class PlayerBullet : MonoBehaviour
     {
-        public float speed = 100f;
+        public float speed = 150f;
 
         void Update()
         {
-            MoveUp();
+            if (Global.IsInArcade)
+            {
+                MoveUp();
+            }
         }
 
         void MoveUp()
         {
             transform.Translate(Vector3.up * speed * Time.deltaTime);
+        }
 
-            if (IsOutOfScreen())
+        void OnBecameInvisible()
+        {
+            Destroy(gameObject); // Destruir la bala al salir de la pantalla
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.GetComponent<Enemy>())
             {
                 Destroy(gameObject);
             }
-        }
-
-        bool IsOutOfScreen()
-        {
-            Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
-            return viewPos.y > 1f;
-        }
-
-        void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.CompareTag("Enemy"))
-                Destroy(gameObject);
         }
     }
 }
